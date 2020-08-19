@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {showInit} from './animation/app.component.animation';
+import {showInit} from './animation/show-hide.animation';
 
 @Component({
   selector: 'app-root',
