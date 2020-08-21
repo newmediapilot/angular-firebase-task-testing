@@ -1,9 +1,10 @@
-<h1>Create reminder:</h1>
+<!-- stepper -->
 <mat-horizontal-stepper>
-  <mat-step state="when">
+  <!-- step 1 -->
+  <mat-step state="reminderType" content="reminderType">
     <mat-card>
       <mat-card-title>
-        Remind me...
+        Remind me when...
       </mat-card-title>
       <mat-card-content>
         <form [formGroup]="reminderTypeGroup">
@@ -17,17 +18,21 @@
           </mat-radio-group>
         </form>
       </mat-card-content>
-      <mat-card-footer>
+      <mat-card-actions>
         <button [disabled]="!reminderTypeGroup.valid"
-                mat-raised-button matStepperNext>Next
+                mat-raised-button
+                color="primary"
+                matStepperNext>
+          Next
         </button>
-      </mat-card-footer>
+      </mat-card-actions>
     </mat-card>
   </mat-step>
-  <mat-step state="what">
+  <!-- step 2 -->
+  <mat-step state="reminderText">
     <mat-card>
       <mat-card-title>
-        Reminder...
+        Remind me about...
       </mat-card-title>
       <mat-card-content>
         <form [formGroup]="reminderTextGroup">
@@ -40,11 +45,15 @@
           </mat-form-field>
         </form>
       </mat-card-content>
-      <mat-card-footer>
+      <mat-card-actions>
         <button isRoundButton="true" mat-raised-button matStepperPrevious>Wait, go back</button>
         <button [disabled]="!reminderTextGroup.valid"
-                mat-raised-button (click)="setReminder()">Let's go!</button>
-      </mat-card-footer>
+                mat-raised-button
+                color="primary"
+                (click)="setReminder()">
+          Let's go!
+        </button>
+      </mat-card-actions>
     </mat-card>
   </mat-step>
 </mat-horizontal-stepper>
