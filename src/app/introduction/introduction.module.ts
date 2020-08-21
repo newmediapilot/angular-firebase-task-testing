@@ -1,15 +1,16 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { IntroductionRoutingModule } from './introduction-routing.module';
-import { IntroductionComponent } from './introduction.component';
+import {IntroductionComponent} from './introduction.component';
+import {AngularMaterialModule} from '../vendor/angular-material.module';
 
 
 @NgModule({
   declarations: [IntroductionComponent],
   imports: [
     CommonModule,
-    IntroductionRoutingModule
+    AngularMaterialModule
   ]
 })
-export class IntroductionModule { }
+export class IntroductionModule {
+}
