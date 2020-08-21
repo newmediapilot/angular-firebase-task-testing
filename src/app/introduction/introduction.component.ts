@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'nmp-introduction',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IntroductionComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router) {
+  }
 
   ngOnInit() {
+  }
+
+  completeIntroduction() {
+    this.router.navigate(['editor'], {relativeTo: this.route});
+    console.log('completeIntroduction');
+  }
+
+  ngOnDestroy() {
+    // TODO: create localStorage handler service for these
+    //  make it return :Observable
+    // localStorage.setItem('introduction', 'true');
   }
 
 }

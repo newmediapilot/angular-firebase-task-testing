@@ -1,41 +1,48 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
+import {LoginComponent} from './login/login.component';
+import {IntroductionComponent} from './introduction/introduction.component';
+import {EditorComponent} from './editor/editor.component';
+import {CompleteComponent} from './complete/complete.component';
+import {TrashComponent} from './trash/trash.component';
+import {NotFoundComponent} from './not-found/not-found.component';
+import {AuthenticatedComponent} from './authenticated/authenticated.component';
 
 const routes: Routes = [
   {
     path: '',// login
-    loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+    component: LoginComponent
     // canActivate (Send to introduction if token=true)
   },
   {
-    path: 'app',
-    // canActivate (login guard here)
+    path: 'authenticated', // canActivate (login guard here)
+    component: AuthenticatedComponent,
     children: [
       {
         path: 'introduction',
-        loadChildren: () => import('./introduction/introduction.module').then(m => m.IntroductionModule)
+        component: IntroductionComponent
         // canActivate (Send to editor if introduction=true)
       },
       {
         path: 'editor',
-        loadChildren: () => import('./editor/editor.module').then(m => m.EditorModule)
+        component: EditorComponent
       },
       {
         path: 'complete',
-        loadChildren: () => import('./complete/complete.module').then(m => m.CompleteModule)
+        component: CompleteComponent
       },
       {
         path: 'trash',
-        loadChildren: () => import('./trash/trash.module').then(m => m.TrashModule)
+        component: TrashComponent
       },
       {
-        path: '**', redirectTo: 'introduction'
+        path: 'app/**', redirectTo: 'introduction'
       }
     ],
   },
   {
     path: 'not-found',
-    loadChildren: () => import('./not-found/not-found.module').then(m => m.NotFoundModule)
+    component: NotFoundComponent
   },
   {
     path: '**', redirectTo: 'not-found'
