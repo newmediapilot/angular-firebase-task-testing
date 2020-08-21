@@ -17,8 +17,7 @@ export class IntroductionComponent implements OnInit {
   }
 
   completeIntroduction() {
-    this.router.navigate(['editor'], {relativeTo: this.route});
-    console.log('completeIntroduction');
+    this.router.navigate(['editor'], {relativeTo: this.route.parent});
   }
 
   ngOnDestroy() {
