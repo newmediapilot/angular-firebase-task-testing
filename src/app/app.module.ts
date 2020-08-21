@@ -11,7 +11,7 @@ import {IntroductionComponent} from './introduction/introduction.component';
 import {LoginComponent} from './login/login.component';
 import {TrashComponent} from './trash/trash.component';
 import {NotFoundComponent} from './not-found/not-found.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,6 +30,7 @@ import {FormsModule} from '@angular/forms';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
