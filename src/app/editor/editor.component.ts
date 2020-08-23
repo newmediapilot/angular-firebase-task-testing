@@ -1,17 +1,21 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, RequiredValidator, Validators} from '@angular/forms';
+import {StoreService} from '../service/store.service';
 
 @Component({
   selector: 'nmp-editor',
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.scss']
 })
+
 export class EditorComponent {
 
   reminderTypeGroup: FormGroup;
   reminderTextGroup: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private storeService: StoreService) {
     this.fb = new FormBuilder();
 
     // reminderType form
@@ -19,6 +23,8 @@ export class EditorComponent {
       reminderTypeSelect: fb.control('', [
         Validators.required
       ])
+
+
     });
 
     // reminderText form
@@ -31,11 +37,11 @@ export class EditorComponent {
   }
 
   setReminder() {
-    var output: object = Object.assign(
+    var values: object = Object.assign(
       this.reminderTypeGroup.getRawValue(),
       this.reminderTextGroup.getRawValue()
     );
-    // TODO: save to service
+    this.storeService.createReminder(values);
   }
 
 }
