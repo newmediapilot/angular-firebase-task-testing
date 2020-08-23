@@ -12,6 +12,8 @@ import {LoginComponent} from './login/login.component';
 import {TrashComponent} from './trash/trash.component';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {StoreService} from './service/store.service';
+import {LocationService} from './service/location.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    StoreService,
+    LocationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
