@@ -122,8 +122,13 @@
               "devServerTarget": "nmp-angular-starter-kit:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "nmp-angular-starter-kit"
 }

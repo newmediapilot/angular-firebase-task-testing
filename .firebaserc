@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "shuttle-pal-staging": {
+      "hosting": {
+        "nmp-angular-starter-kit": [
+          "shuttle-pal-staging"
+        ]
+      }
+    }
+  }
+}

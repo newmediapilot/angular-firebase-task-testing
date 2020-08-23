@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "nmp-angular-starter-kit",
+      "public": "dist/nmp-angular-starter-kit",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}
