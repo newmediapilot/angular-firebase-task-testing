@@ -14,6 +14,9 @@ import {NotFoundComponent} from './not-found/not-found.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {StoreService} from './service/store.service';
 import {LocationService} from './service/location.service';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,8 @@ import {LocationService} from './service/location.service';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule
   ],
   providers: [
     StoreService,
