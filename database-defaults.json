@@ -1,0 +1,37 @@
+{
+  "user": {
+    "email": null,
+    "flags": {
+      "introductionComplete": false
+    }
+  },
+  "formKeys": {
+    "reminderTypeSelect": [
+      {
+        "label": "Depart",
+        "value": "depart"
+      },
+      {
+        "label": "Arrive",
+        "value": "arrive"
+      }
+    ]
+  },
+  "storage": {
+    "reminders": {
+      "active": [
+        {
+          "reminderTypeSelect": "depart",
+          "reminderText": "text1",
+          "location": {
+            "latitude": 0,
+            "longitude": 0,
+            "raw": null
+          }
+        }
+      ],
+      "deleted": null,
+      "completed": null
+    }
+  }
+}
