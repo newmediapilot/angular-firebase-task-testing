@@ -1,6 +1,8 @@
 <ul>
   <li *ngFor="let reminder of active | async">
+    {{ reminder.key }}
     {{ reminder.reminderTypeSelect }}
     {{ reminder.reminderText }}
+    <button (click)="undeleteReminder(reminder)">restoreItem</button>
   </li>
 </ul>

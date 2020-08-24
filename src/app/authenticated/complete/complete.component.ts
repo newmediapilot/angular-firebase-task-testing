@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {StoreService} from '../../service/store.service';
 
 @Component({
@@ -16,6 +16,10 @@ export class CompleteComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  uncompleteReminder(reminder) {
+    this.storeService.uncompleteReminder(reminder);
   }
 
 }

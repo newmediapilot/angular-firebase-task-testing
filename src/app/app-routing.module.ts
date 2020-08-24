@@ -37,7 +37,7 @@ const routes: Routes = [
         component: CompleteComponent
       },
       {
-        path: 'trash',
+        path: 'deleted',
         component: DeletedComponent
       },
       {

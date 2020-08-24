@@ -56,27 +56,35 @@ export class StoreService {
   }
 
   softDeleteReminder(reminder) {
-    console.log('reminder', reminder);
-    let saveObject = Object.assign({}, reminder, {});
-    saveObject.deletedAt = new Date().getTime();
-    delete saveObject.key;
-    return new Observable(observer => {
-      observer.next();
-    }).pipe(
-      //switchMap(() => fromPromise(this.db.object(this.REMINDERS_ACTIVE_POINTER + '/' + reminder.key).remove())),
-      switchMap(() => fromPromise(this.db.list(this.REMINDERS_DELETED_POINTER).push(saveObject)))
+    console.log('softDeleteReminder', reminder);
+    return fromPromise(this.db.object(this.REMINDERS_ACTIVE_POINTER + '/' + reminder).remove()).pipe(
+      switchMap(() => fromPromise(this.db.list(this.REMINDERS_DELETED_POINTER).push(reminder))),
+    );
+  }
+
+  undeleteReminder(reminder) {
+    console.log('undeleteReminder', reminder);
+    return fromPromise(this.db.object(this.REMINDERS_ACTIVE_POINTER + '/' + reminder.key).remove()).pipe(
+      switchMap(() => fromPromise(this.db.list(this.REMINDERS_ACTIVE_POINTER).push(reminder))),
     );
   }
 
   completeReminder(reminder) {
     console.log('completeReminder', reminder);
-    reminder.completedAt = new Date().getTime();
-    return fromPromise(this.db.list(this.REMINDERS_ACTIVE_POINTER + '/' + reminder.key).remove()).pipe(
+    return fromPromise(this.db.object(this.REMINDERS_ACTIVE_POINTER + '/' + reminder.key).remove()).pipe(
       switchMap(() => fromPromise(this.db.list(this.REMINDERS_COMPLETED_POINTER).push(reminder))),
     );
   }
 
+  uncompleteReminder(reminder) {
+    console.log('uncompleteReminder', reminder);
+    return fromPromise(this.db.object(this.REMINDERS_COMPLETED_POINTER + '/' + reminder.key).remove()).pipe(
+      switchMap(() => fromPromise(this.db.list(this.REMINDERS_ACTIVE_POINTER).push(reminder))),
+    );
+  }
+
   postReminder(reminder) {
+    console.log('postReminder', reminder);
     return fromPromise(this.db.list(this.REMINDERS_ACTIVE_POINTER).push(reminder));
   }
 

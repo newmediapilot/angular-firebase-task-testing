@@ -1,6 +1,6 @@
 <ul>
-  <li *ngFor="let reminder of active | async">
-    {{ reminder | json }}<br>
+  <li *ngFor="let reminder of active | async; $key as key">
+    {{ reminder.key }}
     {{ reminder.reminderTypeSelect }}
     {{ reminder.reminderText }}
     <button (click)="completeItem(reminder)">completeItem</button>
