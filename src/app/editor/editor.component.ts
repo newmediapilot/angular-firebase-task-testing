@@ -49,7 +49,7 @@ export class EditorComponent {
       this.reminderTypeGroup.reset();
       this.reminderTextGroup.reset();
       this.editorStepper.reset();
-      this.router.navigate(['completed'],{relativeTo: this.route.parent})
+      this.router.navigate(['active'],{relativeTo: this.route.parent})
     });
   }
 
