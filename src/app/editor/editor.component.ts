@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, RequiredValidator, Validators} from '@angular/forms';
 import {StoreService} from '../service/store.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {MatHorizontalStepper} from '@angular/material/stepper';
 
 @Component({
   selector: 'nmp-editor',
@@ -10,11 +12,15 @@ import {StoreService} from '../service/store.service';
 
 export class EditorComponent {
 
+  @ViewChild('editorStepper', {static: true}) editorStepper: MatHorizontalStepper;
+
   reminderTypeGroup: FormGroup;
   reminderTextGroup: FormGroup;
 
   constructor(
     private fb: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute,
     private storeService: StoreService) {
     this.fb = new FormBuilder();
 
@@ -23,8 +29,6 @@ export class EditorComponent {
       reminderTypeSelect: fb.control('', [
         Validators.required
       ])
-
-
     });
 
     // reminderText form
@@ -41,7 +45,12 @@ export class EditorComponent {
       this.reminderTypeGroup.getRawValue(),
       this.reminderTextGroup.getRawValue()
     );
-    this.storeService.createReminder(values);
+    this.storeService.createReminder(values).subscribe((success) => {
+      this.reminderTypeGroup.reset();
+      this.reminderTextGroup.reset();
+      this.editorStepper.reset();
+      this.router.navigate(['completed'],{relativeTo: this.route.parent})
+    });
   }
 
 }

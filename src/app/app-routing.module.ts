@@ -7,6 +7,7 @@ import {CompleteComponent} from './complete/complete.component';
 import {TrashComponent} from './trash/trash.component';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {AuthenticatedComponent} from './authenticated/authenticated.component';
+import {ActiveComponent} from './active/active.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path: 'editor',
         component: EditorComponent
+      },
+      {
+        path: 'active',
+        component: ActiveComponent
       },
       {
         path: 'complete',

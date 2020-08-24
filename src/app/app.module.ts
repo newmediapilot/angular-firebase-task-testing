@@ -17,6 +17,7 @@ import {LocationService} from './service/location.service';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
+import { ActiveComponent } from './active/active.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {environment} from '../environments/environment';
     IntroductionComponent,
     LoginComponent,
     NotFoundComponent,
-    TrashComponent
+    TrashComponent,
+    ActiveComponent
   ],
   imports: [
     AngularMaterialModule,

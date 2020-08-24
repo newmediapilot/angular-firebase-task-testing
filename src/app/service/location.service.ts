@@ -20,10 +20,14 @@ export class LocationService {
   fetchLocation() {
     return new Observable(observer => {
       navigator.geolocation.getCurrentPosition((location) => {
-        observer.next(location);
-      }, (error) => {
-        observer.next(error);
-      });
+          observer.next(location);
+        }, (error) => {
+          observer.error(error);
+        }, {
+          timeout: 5000,
+          enableHighAccuracy: true
+        }
+      );
     });
   }
 
