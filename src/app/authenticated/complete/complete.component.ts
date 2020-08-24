@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {StoreService} from '../../service/store.service';
 
 @Component({
   selector: 'nmp-complete',
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompleteComponent implements OnInit {
 
-  constructor() { }
+  active = this.storeService.getCompleteReminders();
+
+  constructor(
+    private storeService: StoreService
+  ) {
+  }
 
   ngOnInit() {
   }

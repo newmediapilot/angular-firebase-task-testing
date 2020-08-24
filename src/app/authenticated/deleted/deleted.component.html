@@ -1,0 +1,6 @@
+<ul>
+  <li *ngFor="let reminder of active | async">
+    {{ reminder.reminderTypeSelect }}
+    {{ reminder.reminderText }}
+  </li>
+</ul>

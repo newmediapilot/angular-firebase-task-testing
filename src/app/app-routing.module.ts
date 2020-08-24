@@ -2,12 +2,12 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {IntroductionComponent} from './introduction/introduction.component';
-import {EditorComponent} from './editor/editor.component';
-import {CompleteComponent} from './complete/complete.component';
-import {TrashComponent} from './trash/trash.component';
+import {EditorComponent} from './authenticated/editor/editor.component';
+import {CompleteComponent} from './authenticated/complete/complete.component';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {AuthenticatedComponent} from './authenticated/authenticated.component';
-import {ActiveComponent} from './active/active.component';
+import {ActiveComponent} from './authenticated/active/active.component';
+import {DeletedComponent} from './authenticated/deleted/deleted.component';
 
 const routes: Routes = [
   {
@@ -38,7 +38,7 @@ const routes: Routes = [
       },
       {
         path: 'trash',
-        component: TrashComponent
+        component: DeletedComponent
       },
       {
         path: 'app/**', redirectTo: 'introduction'

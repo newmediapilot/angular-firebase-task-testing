@@ -1,0 +1,9 @@
+<ul>
+  <li *ngFor="let reminder of active | async">
+    {{ reminder | json }}<br>
+    {{ reminder.reminderTypeSelect }}
+    {{ reminder.reminderText }}
+    <button (click)="completeItem(reminder)">completeItem</button>
+    <button (click)="deleteItem(reminder)">deleteItem</button>
+  </li>
+</ul>

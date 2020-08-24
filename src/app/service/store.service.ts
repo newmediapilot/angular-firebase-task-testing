@@ -3,6 +3,7 @@ import {LocationService} from './location.service';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {observable, Observable} from 'rxjs';
 import {map, mergeMap, switchMap} from 'rxjs/operators';
+import {fromPromise} from 'rxjs/internal-compatibility';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,8 @@ import {map, mergeMap, switchMap} from 'rxjs/operators';
 export class StoreService {
 
   private REMINDERS_ACTIVE_POINTER: string = '/storage/reminders/active';
+  private REMINDERS_COMPLETED_POINTER: string = '/storage/reminders/completed';
+  private REMINDERS_DELETED_POINTER: string = '/storage/reminders/deleted';
 
   constructor(
     private db: AngularFireDatabase,
@@ -29,17 +32,52 @@ export class StoreService {
   }
 
   getActiveReminders() {
-    return this.db.list(this.REMINDERS_ACTIVE_POINTER).valueChanges();
+    return this.db.list(this.REMINDERS_ACTIVE_POINTER).snapshotChanges()
+      .pipe(map(changes =>
+          changes.map(result => ({key: result.payload.key, ...result.payload.val()}))
+        )
+      );
+  }
+
+  getCompleteReminders() {
+    return this.db.list(this.REMINDERS_COMPLETED_POINTER).snapshotChanges()
+      .pipe(map(changes =>
+          changes.map(result => ({key: result.payload.key, ...result.payload.val()}))
+        )
+      );
+  }
+
+  getDeletedReminders() {
+    return this.db.list(this.REMINDERS_DELETED_POINTER).snapshotChanges()
+      .pipe(map(changes =>
+          changes.map(result => ({key: result.payload.key, ...result.payload.val()}))
+        )
+      );
+  }
+
+  softDeleteReminder(reminder) {
+    console.log('reminder', reminder);
+    let saveObject = Object.assign({}, reminder, {});
+    saveObject.deletedAt = new Date().getTime();
+    delete saveObject.key;
+    return new Observable(observer => {
+      observer.next();
+    }).pipe(
+      //switchMap(() => fromPromise(this.db.object(this.REMINDERS_ACTIVE_POINTER + '/' + reminder.key).remove())),
+      switchMap(() => fromPromise(this.db.list(this.REMINDERS_DELETED_POINTER).push(saveObject)))
+    );
+  }
+
+  completeReminder(reminder) {
+    console.log('completeReminder', reminder);
+    reminder.completedAt = new Date().getTime();
+    return fromPromise(this.db.list(this.REMINDERS_ACTIVE_POINTER + '/' + reminder.key).remove()).pipe(
+      switchMap(() => fromPromise(this.db.list(this.REMINDERS_COMPLETED_POINTER).push(reminder))),
+    );
   }
 
   postReminder(reminder) {
-    return new Observable(observer => {
-      this.db.list(this.REMINDERS_ACTIVE_POINTER).push(reminder).then(success => {
-        observer.next(success);
-      }, error => {
-        observer.next(error);
-      });
-    });
+    return fromPromise(this.db.list(this.REMINDERS_ACTIVE_POINTER).push(reminder));
   }
 
   createReminder(values) {

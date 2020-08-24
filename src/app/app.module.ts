@@ -5,11 +5,11 @@ import {AppComponent} from './app.component';
 import {AngularMaterialModule} from './vendor/angular-material.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AuthenticatedComponent} from './authenticated/authenticated.component';
-import {CompleteComponent} from './complete/complete.component';
-import {EditorComponent} from './editor/editor.component';
+import {CompleteComponent} from './authenticated/complete/complete.component';
+import {EditorComponent} from './authenticated/editor/editor.component';
 import {IntroductionComponent} from './introduction/introduction.component';
 import {LoginComponent} from './login/login.component';
-import {TrashComponent} from './trash/trash.component';
+import {DeletedComponent} from './authenticated/deleted/deleted.component';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {StoreService} from './service/store.service';
@@ -17,7 +17,7 @@ import {LocationService} from './service/location.service';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
-import { ActiveComponent } from './active/active.component';
+import {ActiveComponent} from './authenticated/active/active.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import { ActiveComponent } from './active/active.component';
     IntroductionComponent,
     LoginComponent,
     NotFoundComponent,
-    TrashComponent,
+    DeletedComponent,
     ActiveComponent
   ],
   imports: [

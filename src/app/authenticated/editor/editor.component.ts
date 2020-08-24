@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, RequiredValidator, Validators} from '@angular/forms';
-import {StoreService} from '../service/store.service';
+import {StoreService} from '../../service/store.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatHorizontalStepper} from '@angular/material/stepper';
 
