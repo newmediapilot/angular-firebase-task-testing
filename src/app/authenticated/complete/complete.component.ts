@@ -6,20 +6,17 @@ import {StoreService} from '../../service/store.service';
   templateUrl: './complete.component.html',
   styleUrls: ['./complete.component.scss']
 })
-export class CompleteComponent implements OnInit {
+export class CompleteComponent {
 
-  active = this.storeService.getCompleteReminders();
+  items = this.storeService.getCompleteReminders();
 
   constructor(
     private storeService: StoreService
   ) {
   }
 
-  ngOnInit() {
-  }
-
   uncompleteReminder(reminder) {
-    this.storeService.uncompleteReminder(reminder);
+    this.storeService.uncompleteReminder(reminder).subscribe();
   }
 
 }
