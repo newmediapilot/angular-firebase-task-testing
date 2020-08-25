@@ -9,7 +9,6 @@ import {CompleteComponent} from './authenticated/complete/complete.component';
 import {EditorComponent} from './authenticated/editor/editor.component';
 import {IntroductionComponent} from './introduction/introduction.component';
 import {LoginComponent} from './login/login.component';
-import {DeletedComponent} from './authenticated/deleted/deleted.component';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {StoreService} from './service/store.service';
@@ -28,7 +27,6 @@ import {ActiveComponent} from './authenticated/active/active.component';
     IntroductionComponent,
     LoginComponent,
     NotFoundComponent,
-    DeletedComponent,
     ActiveComponent
   ],
   imports: [

@@ -6,28 +6,17 @@ import {StoreService} from '../../service/store.service';
   templateUrl: './active.component.html',
   styleUrls: ['./active.component.scss']
 })
-export class ActiveComponent implements OnInit {
+export class ActiveComponent {
 
-  active = this.storeService.getActiveReminders();
+  items = this.storeService.getActiveReminders();
 
   constructor(
     private storeService: StoreService
   ) {
   }
 
-  ngOnInit() {
-  }
-
   completeItem(reminder) {
-    this.storeService.completeReminder(reminder).subscribe(() => {
-      console.log('active.component completeItem');
-    })
-  }
-
-  deleteItem(reminder) {
-    this.storeService.softDeleteReminder(reminder).subscribe(() => {
-      console.log('active.component deleteItem');
-    })
+    this.storeService.completeReminder(reminder).subscribe();
   }
 
 }

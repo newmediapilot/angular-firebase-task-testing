@@ -7,7 +7,6 @@ import {CompleteComponent} from './authenticated/complete/complete.component';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {AuthenticatedComponent} from './authenticated/authenticated.component';
 import {ActiveComponent} from './authenticated/active/active.component';
-import {DeletedComponent} from './authenticated/deleted/deleted.component';
 
 const routes: Routes = [
   {
@@ -35,10 +34,6 @@ const routes: Routes = [
       {
         path: 'complete',
         component: CompleteComponent
-      },
-      {
-        path: 'deleted',
-        component: DeletedComponent
       },
       {
         path: 'app/**', redirectTo: 'introduction'
