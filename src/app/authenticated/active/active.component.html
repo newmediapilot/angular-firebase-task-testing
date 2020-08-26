@@ -1,15 +1,15 @@
 <ul class="list-group">
   <li class="list-group-item" *ngFor="let item of items$ | async">
     <div class="list-group-item--icon">
-      <span *ngIf="'arrive'==item.val.reminderTypeSelect"><i class="fas fa-external-link-square-alt fa-rotate-180"></i></span>
-      <span *ngIf="'depart'==item.val.reminderTypeSelect"><i class="fas fa-external-link-square-alt"></i></span>
+      <i *ngIf="'arrive'==item.val.reminderTypeSelect" class="fas fa-external-link-square-alt fa-rotate-180"></i>
+      <i *ngIf="'depart'==item.val.reminderTypeSelect" class="fas fa-external-link-square-alt"></i>
     </div>
     <div class="list-group-item--text">
       {{ item.val.reminderText }}
     </div>
     <div class="list-group-item--button">
       <button class="btn btn-primary" (click)="moveItem(item)">
-        <span>click</span>
+        <i class="fas fa-check"></i>
       </button>
     </div>
   </li>
