@@ -12,13 +12,12 @@ export class FirebaseService {
   constructor(private db: AngularFireDatabase) {
   }
 
-  private static utilitySnapshotDeconstruct(snapshotChange): IDeconstructedSnapshotInterface {
+  private static utilitySnapshotDeconstruct(snapshotChange) {
     return snapshotChange.map((item) => {
-      let newItem:IDeconstructedSnapshotInterface =  {
+      return {
         key: item.key,
         val: item['payload'].val()
       };
-      return newItem;
     });
   }
 
