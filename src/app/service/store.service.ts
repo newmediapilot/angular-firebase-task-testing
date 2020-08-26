@@ -46,14 +46,14 @@ export class StoreService {
     return this.firebaseService.move(`${this.CompletedReminders}/${reminder.key}`, this.ActiveReminders, reminder.val);
   }
 
-  postReminder(reminder) {
+  createReminder(reminder) {
     return this.firebaseService.create(this.ActiveReminders, reminder);
   }
 
-  createReminder(values) {
+  saveReminder(values) {
     return this.locationService.fetchLocation().pipe(
       map(location => this.amendLocation(values, location)),
-      mergeMap((amendedValues) => this.postReminder(amendedValues))
+      mergeMap((amendedValues) => this.createReminder(amendedValues))
     );
   }
 

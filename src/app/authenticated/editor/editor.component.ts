@@ -45,10 +45,7 @@ export class EditorComponent {
       this.reminderTypeGroup.getRawValue(),
       this.reminderTextGroup.getRawValue()
     );
-    this.storeService.createReminder(values).subscribe((success) => {
-      this.reminderTypeGroup.reset();
-      this.reminderTextGroup.reset();
-      this.editorStepper.reset();
+    this.storeService.saveReminder(values).subscribe((success) => {
       this.router.navigate(['active'],{relativeTo: this.route.parent})
     });
   }
