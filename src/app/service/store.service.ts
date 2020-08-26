@@ -3,6 +3,7 @@ import {LocationService} from './location.service';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {map, mergeMap} from 'rxjs/operators';
 import {FirebaseService} from './firebase.service';
+import {IReminder} from '../model/reminder';
 
 @Injectable({
   providedIn: 'root'
@@ -38,11 +39,11 @@ export class StoreService {
     return this.firebaseService.list(this.CompletedReminders);
   }
 
-  completeReminder(reminder) {
+  completeReminder(reminder: IReminder) {
     return this.firebaseService.move(`${this.ActiveReminders}/${reminder.key}`, this.CompletedReminders, reminder.val);
   }
 
-  uncompleteReminder(reminder) {
+  uncompleteReminder(reminder: IReminder) {
     return this.firebaseService.move(`${this.CompletedReminders}/${reminder.key}`, this.ActiveReminders, reminder.val);
   }
 
@@ -50,7 +51,7 @@ export class StoreService {
     return this.firebaseService.create(this.ActiveReminders, reminder);
   }
 
-  saveReminder(values) {
+  saveReminder(values: IReminder) {
     return this.locationService.fetchLocation().pipe(
       map(location => this.amendLocation(values, location)),
       mergeMap((amendedValues) => this.createReminder(amendedValues))
