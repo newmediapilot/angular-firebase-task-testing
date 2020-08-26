@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
 import {LocationService} from './location.service';
-import {AngularFireDatabase, SnapshotAction} from '@angular/fire/database';
-import {map, mergeMap, switchMap} from 'rxjs/operators';
-import {fromPromise} from 'rxjs/internal-compatibility';
-import DataSnapshot = firebase.database.DataSnapshot;
+import {AngularFireDatabase} from '@angular/fire/database';
+import {map, mergeMap} from 'rxjs/operators';
+import {FirebaseService} from './firebase.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +14,8 @@ export class StoreService {
 
   constructor(
     private db: AngularFireDatabase,
-    private locationService: LocationService
+    private locationService: LocationService,
+    private firebaseService: FirebaseService
   ) {
   }
 
@@ -30,55 +30,24 @@ export class StoreService {
     });
   }
 
-  private utilitySnapshotDeconstruct(snapshotChange) {
-    return snapshotChange.map((item) => {
-      return {
-        key: item.key,
-        val: item['payload'].val()
-      }
-    });
-  }
-
-  private list(pointer) {
-    return this.db.list(pointer)
-      .snapshotChanges()
-      .pipe(
-        map(this.utilitySnapshotDeconstruct)
-      )
-  }
-
-  private create(targetPointer, val){
-    return fromPromise(this.db.list(targetPointer).push(val));
-  }
-
-  private delete(targetPointer){
-    return fromPromise(this.db.object(targetPointer).remove());
-  }
-
-  private move(targetPointer, destinationPointer, val) {
-    return this.delete(targetPointer).pipe(
-      switchMap(() => this.create(destinationPointer, val)),
-    );
-  }
-
   getActiveReminders() {
-    return this.list(this.ActiveReminders);
+    return this.firebaseService.list(this.ActiveReminders);
   }
 
   getCompleteReminders() {
-    return this.list(this.CompletedReminders);
+    return this.firebaseService.list(this.CompletedReminders);
   }
 
   completeReminder(reminder) {
-    return this.move(`${this.ActiveReminders}/${reminder.key}`, this.CompletedReminders, reminder.val);
+    return this.firebaseService.move(`${this.ActiveReminders}/${reminder.key}`, this.CompletedReminders, reminder.val);
   }
 
   uncompleteReminder(reminder) {
-    return this.move(`${this.CompletedReminders}/${reminder.key}`, this.ActiveReminders, reminder.val);
+    return this.firebaseService.move(`${this.CompletedReminders}/${reminder.key}`, this.ActiveReminders, reminder.val);
   }
 
   postReminder(reminder) {
-    return fromPromise(this.db.list(this.ActiveReminders).push(reminder));
+    return this.firebaseService.create(this.ActiveReminders, reminder);
   }
 
   createReminder(values) {
