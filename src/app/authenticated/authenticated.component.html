@@ -1,6 +1,12 @@
-<mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-  <mat-button-toggle routerLink="editor">Create</mat-button-toggle>
-  <mat-button-toggle routerLink="active">Active</mat-button-toggle>
-  <mat-button-toggle routerLink="complete">Completed</mat-button-toggle>
-</mat-button-toggle-group>
-<router-outlet></router-outlet>
+<nav class="nav nav-tabs justify-content-center">
+  <a class="nav-link" routerLink="editor" routerLinkActive="active" href="#">Create</a>
+  <a class="nav-link" routerLink="active" routerLinkActive="active" href="#">Active</a>
+  <a class="nav-link" routerLink="complete" routerLinkActive="active" href="#">Completed</a>
+</nav>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

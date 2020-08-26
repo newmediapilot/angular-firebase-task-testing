@@ -1,1 +1,10 @@
-@import './app/vendor/angular-material.module.scss';
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+html {
+  overflow: hidden;
+}
+
+body {
+  padding: 1rem;
+  overflow: hidden;
+}

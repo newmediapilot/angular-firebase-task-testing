@@ -1,26 +1,14 @@
-<mat-list >
-
-  <mat-list-item *ngFor="let item of items$ | async">
-
-    <div class="nmp-mat-list-row">
-
-      <div class="nmp-mat-list-block nmp-mat-list-block--icons">
-        <mat-icon *ngIf="'arrive'==item.val.reminderTypeSelect">south_west</mat-icon>
-        <mat-icon *ngIf="'depart'==item.val.reminderTypeSelect">north_east</mat-icon>
-      </div>
-
-      <div class="nmp-mat-list-block nmp-mat-list-block--text">
-        {{ item.val.reminderText }}
-      </div>
-
-      <div class="nmp-mat-list-block nmp-mat-list-block--button">
-        <button mat-raised-button (click)="moveItem(item)">
-          <mat-icon>undo</mat-icon>
-        </button>
-      </div>
-
-    </div><!-- .nmp-mat-list-row -->
-
-  </mat-list-item>
-
-</mat-list>
+<div class="row" *ngFor="let item of items$ | async">
+  <div class="col-3">
+    <span *ngIf="'arrive'==item.val.reminderTypeSelect"><--</span>
+    <span *ngIf="'depart'==item.val.reminderTypeSelect">--></span>
+  </div>
+  <div class="col-6">
+    {{ item.val.reminderText }}
+  </div>
+  <div class="col-3">
+    <button class="btn btn-primary" (click)="moveItem(item)">
+      <span>click</span>
+    </button>
+  </div>
+</div>

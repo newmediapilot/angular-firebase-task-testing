@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterContentInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, RequiredValidator, Validators} from '@angular/forms';
 import {StoreService} from '../../service/store.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -10,12 +10,11 @@ import {MatHorizontalStepper} from '@angular/material/stepper';
   styleUrls: ['./editor.component.scss']
 })
 
-export class EditorComponent {
+export class EditorComponent implements AfterContentInit {
 
-  @ViewChild('editorStepper', {static: true}) editorStepper: MatHorizontalStepper;
+  @ViewChild('reminderTextInput', {static: true}) reminderTextEl;
 
-  reminderTypeGroup: FormGroup;
-  reminderTextGroup: FormGroup;
+  reminderGroup: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -24,15 +23,10 @@ export class EditorComponent {
     private storeService: StoreService) {
     this.fb = new FormBuilder();
 
-    // reminderType form
-    this.reminderTypeGroup = fb.group({
+    this.reminderGroup = fb.group({
       reminderTypeSelect: fb.control('', [
         Validators.required
-      ])
-    });
-
-    // reminderText form
-    this.reminderTextGroup = fb.group({
+      ]),
       reminderText: fb.control('', [
         Validators.required
       ])
@@ -40,13 +34,19 @@ export class EditorComponent {
 
   }
 
+  ngAfterContentInit() {
+    let el: HTMLInputElement = this.reminderTextEl.nativeElement;
+    setTimeout(() => {
+      el.focus();
+    }, 222);
+  }
+
   setReminder() {
     var values: object = Object.assign(
-      this.reminderTypeGroup.getRawValue(),
-      this.reminderTextGroup.getRawValue()
+      this.reminderGroup.getRawValue()
     );
     this.storeService.saveReminder(values).subscribe((success) => {
-      this.router.navigate(['active'],{relativeTo: this.route.parent})
+      this.router.navigate(['active'], {relativeTo: this.route.parent})
     });
   }
 

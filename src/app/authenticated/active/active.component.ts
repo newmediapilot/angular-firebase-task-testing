@@ -1,7 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {StoreService} from '../../service/store.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {tap} from 'rxjs/operators';
 
 @Component({
   selector: 'nmp-active',
@@ -10,23 +8,15 @@ import {tap} from 'rxjs/operators';
 })
 export class ActiveComponent {
 
-  items = this.storeService.getIncompleteReminders();
+  items$ = this.storeService.getIncompleteReminders();
 
   constructor(
-    private storeService: StoreService,
-    private _snackBar: MatSnackBar,
+    private storeService: StoreService
   ) {
   }
 
   moveItem(reminder) {
-    this.storeService.completeReminder(reminder).pipe(
-      tap(() => {
-        console.log('moveItem');
-        this._snackBar.open('Good work!', 'OK', {
-          duration: 2000,
-        });
-      })
-    ).subscribe();
+    this.storeService.completeReminder(reminder).subscribe();
   }
 
 }

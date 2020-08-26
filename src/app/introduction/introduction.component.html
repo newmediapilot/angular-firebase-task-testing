@@ -1,34 +1,5 @@
-<mat-horizontal-stepper>
-  <mat-step label="Step 1" state="phone">
-    <mat-card>
-      <mat-card-title>
-        I am here to help you when you are on the move.
-      </mat-card-title>
-      <mat-card-actions>
-        <button isRoundButton="true" mat-raised-button matStepperNext>How?</button>
-      </mat-card-actions>
-    </mat-card>
-  </mat-step>
-  <mat-step label="Step 2" state="chat">
-    <mat-card>
-      <mat-card-title>
-        When you arrive at a location, I will remind you about something you asked me to remember.
-      </mat-card-title>
-      <mat-card-actions>
-        <button isRoundButton="true" mat-raised-button matStepperPrevious>Back</button>
-        <button isRoundButton="true" mat-raised-button matStepperNext>Great... what else?</button>
-      </mat-card-actions>
-    </mat-card>
-  </mat-step>
-  <mat-step label="Step 3">
-    <mat-card>
-      <mat-card-title>
-        If you are leaving an area, I can remind you about something you asked me to remember too.
-      </mat-card-title>
-      <mat-card-actions>
-        <button isRoundButton="true" mat-raised-button matStepperPrevious>Back</button>
-        <button isRoundButton="true" mat-raised-button (click)="completeIntroduction()">Let me try!</button>
-      </mat-card-actions>
-    </mat-card>
-  </mat-step>
-</mat-horizontal-stepper>
+<h2>I am here to help you when you are on the move.</h2>
+
+<h2>When you arrive at a location, I will remind you about something you asked me to remember.</h2>
+
+<button class="btn btn-primary" (click)="completeIntroduction()">Let me try!</button>

@@ -1,59 +1,32 @@
-<!-- stepper -->
-<mat-horizontal-stepper #editorStepper>
-  <!-- step 1 -->
-  <mat-step state="reminderType" content="reminderType">
-    <mat-card>
-      <mat-card-title>
-        Remind me when...
-      </mat-card-title>
-      <mat-card-content>
-        <form [formGroup]="reminderTypeGroup">
-          <mat-radio-group [formControlName]="'reminderTypeSelect'">
-            <mat-radio-button value="depart">
-              when I leave here
-            </mat-radio-button>
-            <mat-radio-button value="arrive">
-              when I come back here
-            </mat-radio-button>
-          </mat-radio-group>
-        </form>
-      </mat-card-content>
-      <mat-card-actions>
-        <button [disabled]="!reminderTypeGroup.valid"
-                mat-raised-button
-                color="primary"
-                matStepperNext>
-          Next
-        </button>
-      </mat-card-actions>
-    </mat-card>
-  </mat-step>
-  <!-- step 2 -->
-  <mat-step state="reminderText">
-    <mat-card>
-      <mat-card-title>
-        Remind me about...
-      </mat-card-title>
-      <mat-card-content>
-        <form [formGroup]="reminderTextGroup">
-          <mat-form-field>
-          <textarea matInput
-                    cdkTextareaAutosize
-                    [formControlName]="'reminderText'"
-                    mat-autosize="true"></textarea>
-            <mat-hint *ngIf="!reminderTextGroup.valid">type here...</mat-hint>
-          </mat-form-field>
-        </form>
-      </mat-card-content>
-      <mat-card-actions>
-        <button isRoundButton="true" mat-raised-button matStepperPrevious>Wait, go back</button>
-        <button [disabled]="!reminderTextGroup.valid"
-                mat-raised-button
-                color="primary"
-                (click)="setReminder()">
-          Let's go!
-        </button>
-      </mat-card-actions>
-    </mat-card>
-  </mat-step>
-</mat-horizontal-stepper>
+<form [formGroup]="reminderGroup" autocomplete="off">
+
+  <div class="form-group">
+    <label for="reminderText">What's the reminder?</label>
+    <input [formControlName]="'reminderText'"
+           #reminderTextInput
+           placeholder="Type something here..."
+           type="text" class="form-control" id="reminderText">
+  </div>
+
+  <div class="form-group">
+    <div class="form-check">
+      <input [formControlName]="'reminderTypeSelect'"
+             class="form-check-input" type="radio" name="reminderTypeSelect" id="reminderTypeSelect1" value="depart">
+      <label class="form-check-label" for="reminderTypeSelect1">
+        When I leave here
+      </label>
+    </div>
+    <div class="form-check">
+      <input [formControlName]="'reminderTypeSelect'"class="form-check-input" type="radio" name="reminderTypeSelect" id="reminderTypeSelect2" value="arrive">
+      <label class="form-check-label" for="reminderTypeSelect2">
+        When I arrive here
+      </label>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary btn-lg"
+          [disabled]="reminderGroup.invalid"
+          (click)="setReminder()">Send it!
+  </button>
+
+</form>

@@ -2,7 +2,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {AngularMaterialModule} from './vendor/angular-material.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AuthenticatedComponent} from './authenticated/authenticated.component';
 import {CompleteComponent} from './authenticated/complete/complete.component';
@@ -30,7 +29,6 @@ import {ActiveComponent} from './authenticated/active/active.component';
     ActiveComponent
   ],
   imports: [
-    AngularMaterialModule,
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
