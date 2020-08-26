@@ -8,7 +8,7 @@ import {StoreService} from '../../service/store.service';
 })
 export class ActiveComponent {
 
-  items = this.storeService.getActiveReminders();
+  items = this.storeService.getIncompleteReminders();
 
   constructor(
     private storeService: StoreService

@@ -31,7 +31,7 @@ export class StoreService {
     });
   }
 
-  getActiveReminders() {
+  getIncompleteReminders() {
     return this.firebaseService.list(this.ActiveReminders);
   }
 
