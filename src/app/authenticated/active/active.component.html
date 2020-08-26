@@ -1,8 +1,10 @@
 <mat-list>
   <mat-list-item *ngFor="let item of items | async">
-    {{ item.key }}
-    {{ item.val.reminderTypeSelect  }}
-    {{ item.val.reminderText }}
+    <mat-icon *ngIf="'arrive'==item.val.reminderTypeSelect">south_west</mat-icon>
+    <mat-icon *ngIf="'depart'==item.val.reminderTypeSelect">north_east</mat-icon>
+
+    <span>{{ item.val.reminderText }}</span>
+
     <button mat-icon-button (click)="completeItem(item)">
       <mat-icon>undo</mat-icon>
     </button>
