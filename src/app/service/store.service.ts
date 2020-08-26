@@ -51,7 +51,7 @@ export class StoreService {
     return this.firebaseService.create(this.ActiveReminders, reminder);
   }
 
-  saveReminder(values: IReminder) {
+  saveReminder(values) {
     return this.locationService.fetchLocation().pipe(
       map(location => this.amendLocation(values, location)),
       mergeMap((amendedValues) => this.createReminder(amendedValues))
