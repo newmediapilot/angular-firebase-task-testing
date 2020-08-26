@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {map, switchMap} from 'rxjs/operators';
 import {fromPromise} from 'rxjs/internal-compatibility';
 import {AngularFireDatabase} from '@angular/fire/database';
+import {IDeconstructedSnapshotInterface} from '../model/deconstructed-snapshot.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,13 @@ export class FirebaseService {
   constructor(private db: AngularFireDatabase) {
   }
 
-  private static utilitySnapshotDeconstruct(snapshotChange) {
+  private static utilitySnapshotDeconstruct(snapshotChange): IDeconstructedSnapshotInterface {
     return snapshotChange.map((item) => {
-      return {
+      let newItem:IDeconstructedSnapshotInterface =  {
         key: item.key,
         val: item['payload'].val()
-      }
+      };
+      return newItem;
     });
   }
 
