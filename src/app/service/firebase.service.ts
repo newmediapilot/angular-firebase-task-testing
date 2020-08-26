@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {map, switchMap} from 'rxjs/operators';
 import {fromPromise} from 'rxjs/internal-compatibility';
 import {AngularFireDatabase} from '@angular/fire/database';
-import {IDeconstructedSnapshotInterface} from '../model/deconstructed-snapshot.interface';
 
 @Injectable({
   providedIn: 'root'

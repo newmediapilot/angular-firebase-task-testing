@@ -1,0 +1,30 @@
+.npm-no-items {
+  margin: 1em;
+}
+
+mat-list-item {
+  .nmp-mat-list-row {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    width: 100%;
+
+    .nmp-mat-list-block {
+      display: flex;
+      align-items: center;
+
+      &.nmp-mat-list-block--icons {
+
+      }
+
+      &.nmp-mat-list-block--text {
+        flex-grow: 1;
+        margin-left: 1em;
+      }
+
+      &.nmp-mat-list-block--button {
+        //
+      }
+    }
+  }
+}

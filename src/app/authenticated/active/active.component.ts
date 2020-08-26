@@ -15,7 +15,7 @@ export class ActiveComponent {
   ) {
   }
 
-  completeItem(reminder) {
+  moveItem(reminder) {
     this.storeService.completeReminder(reminder).subscribe();
   }
 

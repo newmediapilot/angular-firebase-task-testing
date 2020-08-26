@@ -1,12 +1,32 @@
-<mat-list>
+<ng-template #noItemsAsync>
+  <div class="npm-no-items">
+    <h4>No Items</h4>
+  </div>
+</ng-template>
+
+<mat-list *ngIf="(items | async) else noItemsAsync">
+
   <mat-list-item *ngFor="let item of items | async">
-    <mat-icon *ngIf="'arrive'==item.val.reminderTypeSelect">south_west</mat-icon>
-    <mat-icon *ngIf="'depart'==item.val.reminderTypeSelect">north_east</mat-icon>
 
-    <span>{{ item.val.reminderText }}</span>
+    <div class="nmp-mat-list-row">
 
-    <button mat-icon-button (click)="completeItem(item)">
-      <mat-icon>undo</mat-icon>
-    </button>
+      <div class="nmp-mat-list-block nmp-mat-list-block--icons">
+        <mat-icon *ngIf="'arrive'==item.val.reminderTypeSelect">south_west</mat-icon>
+        <mat-icon *ngIf="'depart'==item.val.reminderTypeSelect">north_east</mat-icon>
+      </div>
+
+      <div class="nmp-mat-list-block nmp-mat-list-block--text">
+        {{ item.val.reminderText }}
+      </div>
+
+      <div class="nmp-mat-list-block nmp-mat-list-block--button">
+        <button mat-raised-button (click)="moveItem(item)">
+          <mat-icon>done_outline</mat-icon>
+        </button>
+      </div>
+
+    </div><!-- .nmp-mat-list-row -->
+
   </mat-list-item>
+
 </mat-list>
