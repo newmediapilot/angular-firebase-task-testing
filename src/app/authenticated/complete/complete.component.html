@@ -1,14 +1,16 @@
-<div class="row" *ngFor="let item of items$ | async">
-  <div class="col-3">
-    <span *ngIf="'arrive'==item.val.reminderTypeSelect"><--</span>
-    <span *ngIf="'depart'==item.val.reminderTypeSelect">--></span>
-  </div>
-  <div class="col-6">
-    {{ item.val.reminderText }}
-  </div>
-  <div class="col-3">
-    <button class="btn btn-primary" (click)="moveItem(item)">
-      <span>click</span>
-    </button>
-  </div>
-</div>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let item of items$ | async">
+    <div class="list-group-item--icon">
+      <span *ngIf="'arrive'==item.val.reminderTypeSelect"><--</span>
+      <span *ngIf="'depart'==item.val.reminderTypeSelect">--></span>
+    </div>
+    <div class="list-group-item--text">
+      {{ item.val.reminderText }}
+    </div>
+    <div class="list-group-item--button">
+      <button class="btn btn-primary" (click)="moveItem(item)">
+        <span>click</span>
+      </button>
+    </div>
+  </li>
+</ul>

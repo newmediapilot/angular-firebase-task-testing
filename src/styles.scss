@@ -1,4 +1,7 @@
-@import "../node_modules/bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/bootstrap";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+
+$fa-font-path:'/webfonts';
 
 html {
   overflow: hidden;
@@ -6,5 +9,4 @@ html {
 
 body {
   padding: 1rem;
-  overflow: hidden;
 }
