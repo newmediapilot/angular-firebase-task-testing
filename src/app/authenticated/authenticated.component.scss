@@ -1,9 +1,15 @@
 .nav {
-  margin-bottom: 1rem;
-
+  margin-top: 1rem;
+  
   .nav-link {
+    padding: 1rem 0.5rem;
+
     i {
       margin-right: .5rem;
     }
   }
+}
+
+.npm-router-outlet {
+  padding: 1rem;
 }
