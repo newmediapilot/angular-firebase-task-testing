@@ -42,7 +42,7 @@ export class EditorComponent implements AfterContentInit {
   }
 
   setReminder() {
-    var values: object = Object.assign(
+    var values = Object.assign(
       this.reminderGroup.getRawValue()
     );
     this.storeService.saveReminder(values).subscribe((success) => {
