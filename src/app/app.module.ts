@@ -16,6 +16,7 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {ActiveComponent} from './authenticated/active/active.component';
+import { NavbarComponent } from './common/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {ActiveComponent} from './authenticated/active/active.component';
     IntroductionComponent,
     LoginComponent,
     NotFoundComponent,
-    ActiveComponent
+    ActiveComponent,
+    NavbarComponent
   ],
   imports: [
     AppRoutingModule,
